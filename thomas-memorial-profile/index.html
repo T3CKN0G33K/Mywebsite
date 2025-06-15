@@ -1,1 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas J. Barton - Biography</title>
+    <style>
+        :root {
+            --color-background: #000000;
+            --color-surface: rgba(20, 20, 20, 0.9);
+            --color-text: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.7);
+            --color-primary: #32b8c6;
+            --color-primary-hover: #2da6b2;
+            --color-border: rgba(255, 255, 255, 0.2);
+            --color-card-border: rgba(255, 255, 255, 0.1);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Smoke background effect */
+        .smoke-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .smoke {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 70%);
+            filter: blur(2px);
+            animation: drift linear infinite;
+        }
+
+        .smoke-1 {
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            left: -100px;
+            animation-duration: 25s;
+        }
+
+        .smoke-2 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: -75px;
+            animation-duration: 30s;
+            animation-delay: 5s;
+        }
+
+        .smoke-3 {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            left: 10%;
+            animation-duration: 35s;
+            animation-delay: 10s;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateX(-200px) translateY(200px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 200px)) translateY(-200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--color-primary);
+            box-shadow: 0 0 30px rgba(50, 184, 198, 0.3);
+            display: block;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(50, 184, 198, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .bio-section {
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+            text-align: center;
+        }
+
+        .bio-text {
+            margin-bottom: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            background: rgba(50, 184, 198, 0.1);
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-link:hover {
+            background: var(--color-primary);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(50, 184, 198, 0.3);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--color-primary-hover);
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
+            }
+            
+            .bio-section {
+                padding: 1.5rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Smoke background -->
+    <div class="smoke-container">
+        <div class="smoke smoke-1"></div>
+        <div class="smoke smoke-2"></div>
+        <div class="smoke smoke-3"></div>
+    </div>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            ← Back to Main Site
+        </a>
+
+        <div class="header">
+            <img src="052ef203-3b00-4635-8cd6-e159ee586dc5.jpg" alt="Thomas J. Barton" class="profile-image">
+            <h1 class="name">Thomas J. Barton</h1>
+            <p class="tagline">Your Go-To Tech Problem Solver</p>
+        </div>
+
+        <div class="bio-section">
+            <h2 class="section-title">About Me</h2>
+            <p class="bio-text">
+                Hey there! I'm Thomas J. Barton, and if it's got a screen or a circuit board, chances are I can fix it. While my day job is with The Home Depot Freight Team, my true passion lies in bringing your tech back to life. From phone screen repairs to complex PC component swaps, I thrive on the challenge and the satisfaction of finding solutions that make your life easier.
+            </p>
+            <p class="bio-text">
+                My journey into tech began with web programming, sparking a curiosity that quickly evolved into a knack for troubleshooting and repair. Since 2019, I've relentlessly honed my skills, learning everything from cloning hard drives and customizing Windows OS to confidently replacing phone and laptop components. This self-taught evolution has made me incredibly resourceful and adaptable—a true "Jack of All Trades" driven by an insatiable curiosity.
+            </p>
+            <p class="bio-text">
+                What drives me? Seeing the relief and happiness on people's faces when their stressed-out tech problems vanish. I'm a natural listener, genuinely caring, and I'm dedicated to being the trusted individual you can always turn to for reliable, affordable tech help.
+            </p>
+        </div>
+
+        <div class="bio-section">
+            <h2 class="section-title">Skills & Services</h2>
+            <ul class="skills-list">
+                <li>📱 Phone screen repairs and component replacement</li>
+                <li>💻 PC component swaps and upgrades</li>
+                <li>💽 Hard drive cloning and data recovery</li>
+                <li>⚙️ Custom Windows OS tweaks and optimization</li>
+                <li>🌐 Web programming and troubleshooting</li>
+                <li>🔧 Laptop repairs and maintenance</li>
+            </ul>
+        </div>
+
+        <div class="bio-section">
+            <h2 class="section-title">Vision & Values</h2>
+            <p class="bio-text">
+                My mission is clear: to one day open my own tech repair shop, a welcoming space where everyone can get their devices fixed reliably and affordably. I believe in caring for my clients, listening intently to their concerns, and providing solutions without judgment. It's this client-centric approach that sets me apart—along with a unique trick involving an NFC key card that instantly shares my digital presence!
+            </p>
+        </div>
+
+        <div class="bio-section">
+            <h2 class="section-title">Beyond Tech</h2>
+            <p class="bio-text">
+                Beyond tech, I'm also a keen photographer and enjoy personal car repairs and exploring computer programs for fun. Fun fact: I've even played soccer at Gillette Stadium! My motivation stems from seeing others happy and excited when their tech problems are finally resolved. The sheer joy of finding a solution that eases someone's stress is what keeps me going.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
